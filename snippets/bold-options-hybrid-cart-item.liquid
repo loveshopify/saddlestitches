@@ -1,0 +1,6 @@
+{%- comment -%}Bold:PO 2.0 - Hybrid Fix{%- endcomment -%}
+{%- assign item = line_item | default: item -%}
+{%- if item.properties._boldBuilderId  and item.properties._boldVariantIds == null -%}
+    <input type="hidden" name="updates[]" id="updates_{{- item.key -}}" class="cart__product-qty" value="{{- item.quantity -}}" min="0" data-id="{{- item.key -}}">
+    {%- continue -%}
+{%- endif -%}

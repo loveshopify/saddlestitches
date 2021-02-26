@@ -1,0 +1,164 @@
+<script>
+  $(document).on("click","#customize_checkbox",function() {
+    if($(this).prop("checked") == true){
+      $('.dm-customize-options').slideDown();
+      if(window.innerWidth > 768){
+        $('#shopify-section-product-template .Product.Product--small').css("margin-bottom", "300px");
+      }
+    }else if($(this).prop("checked") == false){
+      $('.dm-customize-options').slideUp();
+      $('#shopify-section-product-template .Product.Product--small').removeAttr('style');
+      remove_customize();
+    }
+  });
+
+  function remove_customize(){
+    $('.bold_option_element select').prop('selectedIndex', 0);
+    $('.bold_option_dropdown .swatch img').attr('src','//placehold.it/100x100/ffffff/ffffff');
+    $('.dm-customize-options input[type=text]').val('');
+    $('.dm-customize-options input[type=checkbox]').prop("checked",false);
+  }
+
+  var base_files_url = 'https://cdn.shopify.com/s/files/1/2779/1740/files/';
+  var changeEvent = new Event('change'); // used to update the bold dropdown selectors
+
+  window.BOLD.options.app.on('options_loaded', bold_options_rendered);
+
+  function bold_options_rendered() {
+    
+    $('.customize-checkbox-option').show();
+   
+    $('#toggle_quantity').css({'margin-left': '0', 'padding-right': '10px'});
+    $('#toggle_customize').show(0);
+
+    $('.bold_options.bold_options_loaded').appendTo('#shopify-section-product-template .text .options .customize');
+
+    // limit "initial" fields to 1 character
+    if ($('.bold_option_value_title').length) {
+      $('.bold_option_value_title').each(function () {
+        var title = $(this).text().trim().toLowerCase();
+        if (title.indexOf('initial') >= 0) {
+          $(this).parent().find('input[type="text"]').attr('maxlength', 1);
+        }
+      });
+    }
+
+    if ($('.bold_option_dropdown').length) {
+
+      $('.bold_option.bold_option_dropdown').each(function () {
+		
+        var $drop = $(this);
+        $drop.find('select option').each(function () {
+          if ($(this).attr('value') == '') {
+            $(this).text('Select One');
+          }
+        });
+
+        //DM             var $prop = $drop.find('.bold_option_title').html().trim();
+        var $prop = $drop.find('.bold_option_element select').attr('name').trim();
+        $prop = $prop.replace('properties','');
+        $prop = $prop.replace('[','');
+        $prop = $prop.replace(']','');
+        var $title = $prop.toLowerCase().trim();
+        var $slug = $title.replace(/\s+/g, '-').replace('(', '').replace(')', '');
+
+        if ($title == 'monogram' || $title == 'embellishments' || $title.indexOf('color') >= 0) {
+
+          if ($title == 'monogram') {
+            $type = 'style';
+          } else {
+            $type = 'swatch';
+          }
+
+          $drop.addClass('dynamic').append('<span class="swatch swatch-' + $slug + '"><img src="//placehold.it/100x100/ffffff/ffffff" alt="" /></span><span class="blocker" rel="' + $slug + '"></span>');
+
+          var styles = [];
+          var prices = [];
+          $drop.find('select option').each(function () {
+            if ($(this).attr('value') != '') {
+              var inner = $(this).text();
+              var price = '';
+              if (inner.indexOf("[+") >= 0) {
+                var start_pos = inner.indexOf("[+") + 2;
+                var end_pos = inner.indexOf("]", start_pos);
+                price = inner.substring(start_pos, end_pos).replace('.00', '');
+              }
+              styles.push($(this).attr('value'));
+              prices.push(price);
+            }
+          });
+
+          var $popup = $('<div/>', {
+            id: $slug,
+            class: 'popup centertext'
+          }).appendTo('#shopify-section-product-template');
+
+          var content = '<div class="wrap">';
+          content = content + '<div class="swatches">';
+          content = content + '<span class="close"></span>';
+          content = content + '<h2>' + $prop + '</h2>';
+          styles.forEach(function (value, key) {
+            var src = value.trim().replace(/\s+/g, '-').toLowerCase();
+            content = content + '<div class="swatch" data-prop="' + $prop + '" data-value="' + value + '">';
+            content = content + '<img src="' + base_files_url + $slug + '-' + src + '.jpg" alt="" />';
+            content = content + '<span class="sweet_sans_medium">' + value;
+            if (prices[key] != '') {
+              content = content + ' (' + prices[key] + ')';
+            }
+            content = content + '</span>';
+            content = content + '</div>';
+          });
+          content = content + '</div>';
+          content = content + '</div>';
+          $popup.append(content);
+
+          $drop.find('.blocker').click(function () {
+            var rel = $(this).attr('rel');
+            $('html, body').addClass('frozen');
+            $('#' + rel).fadeIn(300);
+          });
+
+          $popup.find('.swatch').click(function () {
+            var val = $(this).data('value');
+            var prop = $(this).data('prop');
+            var src = $(this).find('img').attr('src');
+            $('#shopify-section-product-template select[name="properties[' + prop + ']"]').val(val);
+
+            var $selector = $('select[name="properties[' + prop + ']"]');
+            var $class = $selector.attr('class');
+
+            $selector.find('option').filter(function () {
+              return $(this).val() == val;
+            }).prop('selected', true);
+
+            var elem = document.getElementsByClassName($class)[0];
+            elem.dispatchEvent(changeEvent);
+
+            $('.bold_option_element select').each(function () {
+              if ($(this).val() == '' || $(this).val() == null) {
+                $(this).find('option').first().text('Select One').attr({
+                  'selected': 'selected'
+                });
+              }
+            });
+
+            // end trigger stuff
+
+            $('.swatch.swatch-' + $slug).find('img').attr('src', src);
+            $('#shopify-section-product-template .popup').fadeOut(300, function () {
+              $('html, body').removeClass('frozen');
+              $('html, body').animate({scrollTop: $("#shopify-section-product-template .customize-checkbox-option").offset().top-250}, 0);
+            });
+          });
+
+          $popup.find('.close').click(function () {
+            $('#shopify-section-product-template .popup').fadeOut(300, function () {
+              $('html, body').removeClass('frozen');
+              $('html, body').animate({scrollTop: $("#shopify-section-product-template .customize-checkbox-option").offset().top-250}, 0);
+            });
+          });
+        }
+      });
+    }
+  }
+</script>

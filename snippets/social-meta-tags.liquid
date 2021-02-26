@@ -1,0 +1,91 @@
+{%- comment -%}
+Add Facebook and Pinterest Open Graph meta tags to product pages
+for friendly Facebook sharing and Pinterest pinning.
+
+More info Open Graph meta tags
+- https://developers.facebook.com/docs/opengraph/using-objects/
+- https://developers.pinterest.com/rich_pins/
+
+Use the Facebook Open Graph Debugger for validation (and cache clearing)
+- http://developers.facebook.com/tools/debug
+
+Validate your Pinterest rich pins
+- https://developers.pinterest.com/rich_pins/validator/
+{%- endcomment -%}
+
+{%- if template.name == 'product' -%}
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="{{ product.title | strip_html | escape }}">
+
+  {%- for image in product.images limit:3 -%}
+    <meta property="og:image" content="http:{{ image.src | img_url: 'grande' }}">
+    <meta property="og:image:secure_url" content="https:{{ image.src | img_url: 'grande' }}">
+  {%- endfor -%}
+
+  <meta property="product:price:amount" content="{{ product.price | money_without_currency | strip_html | escape }}">
+  <meta property="product:price:currency" content="{{ shop.currency }}">
+{%- elsif template.name == 'article' -%}
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ article.title | strip_html | escape }}">
+
+  {%- if article.image -%}
+    <meta property="og:image" content="http:{{ article.image | img_url: 'grande' }}">
+    <meta property="og:image:secure_url" content="https:{{ article.image | img_url: 'grande' }}">
+  {%- endif -%}
+{%- elsif template.name == 'collection' -%}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ collection.title | strip_html | escape }}">
+  <meta property="og:image" content="http:{{ collection.image | default: collection.products.first.featured_image | img_url: 'grande' }}">
+  <meta property="og:image:secure_url" content="https:{{ collection.image | default: collection.products.first.featured_image | img_url: 'grande' }}">
+{%- else -%}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title | escape }}">
+
+  {%- if settings.share_image -%}
+    <meta property="og:image" content="http:{{ settings.share_image | img_url: 'grande' }}">
+    <meta property="og:image:secure_url" content="https:{{ settings.share_image | img_url: 'grande' }}">
+  {%- endif -%}
+{%- endif -%}
+
+{%- if page_description -%}
+  <meta property="og:description" content="{{ page_description | escape }}">
+{%- endif -%}
+
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:site_name" content="{{ shop.name }}">
+
+{%- comment -%}
+This snippet renders meta data needed to create a Twitter card
+for products and articles.
+
+Your cards must be approved by Twitter to be activated
+- https://dev.twitter.com/docs/cards/validation/validator
+
+More information:
+- https://dev.twitter.com/cards/types/summary
+{%- endcomment -%}
+
+<meta name="twitter:card" content="summary">
+{%- if template.name == 'product' -%}
+  <meta name="twitter:title" content="{{ product.title }}">
+  <meta name="twitter:description" content="{{ product.description | strip_html | truncatewords: 140, '' | escape }}">
+  <meta name="twitter:image" content="https:{{ product.featured_image.src | img_url: '600x600', crop: 'center' }}">
+{%- elsif template.name == 'article' -%}
+  <meta name="twitter:title" content="{{ article.title }}">
+  <meta name="twitter:description" content="{{ article.excerpt_or_content | strip_html | truncatewords: 140, '' | escape }}">
+
+  {%- if article.image -%}
+    <meta name="twitter:image" content="https:{{ article.image | img_url: '600x600', crop: 'center' }}">
+  {%- endif -%}
+{%- elsif template.name == 'collection' -%}
+  <meta name="twitter:title" content="{{ collection.title }}">
+  <meta name="twitter:description" content="{{ collection.description | strip_html | truncatewords: 140, '' | escape }}">
+  <meta name="twitter:image" content="https:{{ collection.image | default: collection.products.first.featured_image | img_url: '600x600', crop: 'center' }}">
+{%- else -%}
+  <meta name="twitter:title" content="{{ page_title | escape }}">
+  <meta name="twitter:description" content="{{ page_description | default: page_title | escape }}">
+
+  {%- if settings.share_image -%}
+    <meta name="twitter:image" content="https:{{ settings.share_image | img_url: '600x600', crop: 'center' }}">
+  {%- endif -%}
+{%- endif -%}

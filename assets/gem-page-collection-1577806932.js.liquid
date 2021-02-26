@@ -1,0 +1,249 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+
+        jQuery(function() {
+            var $module = jQuery('#m-1580858674124');
+            
+        }); 
+    
+        jQuery(function() {
+            var $module = jQuery('#m-1577744468566').children('.module');
+
+            var sameHeightTitle = $module.data('sameheightitle'),
+                spacing = $module.data('spacing');
+                collg = $module.data('collg'),
+                colmd = $module.data('colmd'),
+                colsm = $module.data('colsm'),
+                colxs = $module.data('colxs');
+
+            var $clearfixes = $module.find('.gf_row-no-padding').children('.gf_clearfix');
+            var col = collg;
+
+
+            jQuery(window).resize(function() {
+                setTimeout(function() {
+                    for(var i = 0; i < $clearfixes.length; i++) {
+                        if($clearfixes.eq(i).css('display') == 'block') {
+                            if($clearfixes.eq(i).hasClass('visible-lg')) {
+                                col = collg;
+                                break;
+                            }
+                            if($clearfixes.eq(i).hasClass('visible-md')) {
+                                col = colmd;
+                                break;
+                            }
+                            if($clearfixes.eq(i).hasClass('visible-sm')) {
+                                col = colsm;
+                                break;
+                            }
+                            if($clearfixes.eq(i).hasClass('visible-xs')) {
+                                col = colxs;
+                                break;
+                            }
+                        }
+                    }
+                }, 1000);
+            });
+
+            if(sameHeightTitle == '1') {
+                var minHeight = 0;
+
+                $module.find('.product-single__title').each(function() {
+                });
+            } else {
+            }
+
+            jQuery($module).css('padding', spacing);
+        }); 
+    
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child1').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child1-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child1-1').children('.module');
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child2').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child2-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child2-1').children('.module');
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child3').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child3-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child3-1').children('.module');
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child4').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child4-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child4-1').children('.module');
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child5').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child5-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child5-1').children('.module');
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child6').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child6-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child6-1').children('.module');
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child7').children('.module');
+        $module.gfV3Product();
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child7-0').children('.module');
+        var effect = $module.attr('data-effect');
+        $module.gfV3ProductImage({
+            'effect': effect
+        })
+    });
+  
+    jQuery(function() {
+        var $module = jQuery('#m-1577744468566-child7-1').children('.module');
+    });
+  
+        jQuery(function() {
+            var $module = jQuery('#m-1577744468500').children('.module');
+            var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+            
+            if (mode == 'dev') {
+                var $paginator = $module.find('.gf_collection-paginator-wrapper');
+                if ($paginator.length > 0) {
+                    var productCount = $paginator.attr('data-product-count');
+                    var previousText = $module.attr('data-previous');
+                    var nextText = $module.attr('data-next');
+                    var activeColor = $module.attr('data-active-color');      
+
+                    var applyEvents = function() {
+                        $paginator.children('span:not(.deco)').off('click').on('click', function() {
+                            var currentPage = parseInt($paginator.children('.current').text()) - 1;
+                        
+                            if (jQuery(this).hasClass('prev')) {
+                                currentPage--;
+                            } else if (jQuery(this).hasClass('next')) {
+                                currentPage++;
+                            } else {
+                                currentPage = parseInt(jQuery(this).text()) - 1;
+                            }
+                            render(currentPage);
+                        })
+                    }
+
+                    var render = function(currentPage) {
+                        $paginator.html('');
+
+                        if (currentPage != 0) {
+                            $paginator.append('<span class="prev">' + previousText + '</span>')
+                        }
+                        
+                        if (currentPage - 2 > 0) {
+                            $paginator.append('<span class="page">1</span>');
+                        }
+
+                        if (currentPage -2 > 1) {
+                            $paginator.append('<span class="deco">...</span>');
+                        }
+
+                        for (var i = Math.max(0, currentPage - 2); i <= Math.min(currentPage + 2, productCount - 1); i++) {
+                            $paginator.append('<span class="page' + (currentPage == i ? ' current' : '') + '">' + (i + 1) + '</span>');
+                        }
+
+                        if (currentPage + 2 < productCount - 2) {
+                            $paginator.append('<span class="deco">...</span>');
+                        }
+
+                        if (currentPage + 2 < productCount - 1) {
+                            $paginator.append('<span class="page">' + productCount + '</span>');
+                        }
+
+                        if (currentPage != productCount - 1 && productCount != 0) {
+                            $paginator.append('<span class="next">' + nextText + '</span>')
+                        }
+
+                        applyEvents();
+                    }
+
+                    render(0);
+                }
+            }
+        });
+    
+var gemFlag=!1;for(var i=0;i<pageLibs.length;i++){if(pageLibs[i].indexOf('gfv3product.js')!==-1){if(jQuery.gfV3Product==undefined){gemFlag=!0;break}}if(pageLibs[i].indexOf('gfv3restabs.js')!==-1){if(jQuery.gfV3ResTabs==undefined){gemFlag=!0;break}}if(pageLibs[i].indexOf('gfaccordion.js')!==-1){if(jQuery.gfAccordion==undefined){gemFlag=!0;break}}}if(gemFlag){var count=0;for(var i=0;i<pageLibs.length-1;i++){jQuery.getScript(pageLibs[i],function(){count++;if(count==pageLibs.length-1){jQuery.getScript(pageLibs[pageLibs.length-1],function(){})}})}}

@@ -1,0 +1,7 @@
+{%- comment -%}Bold:PO 2.0 - Hybrid Fix{%- endcomment -%}
+{%- assign bold_options_hybrid_item_count = 0 -%}
+{%- for item in cart.items -%}
+    {%- unless item.properties._boldBuilderId  and item.properties._boldVariantIds == null -%}
+    {%- assign bold_options_hybrid_item_count = bold_options_hybrid_item_count | plus: item.quantity -%}
+    {%- endunless -%}
+{%- endfor -%}

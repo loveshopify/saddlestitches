@@ -1,0 +1,383 @@
+/*
+------------------------------------  WARNING  ------------------------------------
+This file will be overwritten and should not be edited directly.
+In order to edit custom CSS for Bold Product Options you should:
+- Log into your Shopify Admin Panel
+- Go to Apps --> Installed --> Product Options
+- Go to Display Settings
+------------------------------------  WARNING  ------------------------------------
+bold-options.css version 6
+*/
+
+
+.bold_options {
+            margin-bottom: 20px;
+}
+
+.bold_options:empty {
+    display:none;
+}
+
+.bold_option_product_info {
+    text-align: center;
+    margin: 0 0 25px;
+}
+
+.bold_option_product_info_title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bold_option_product_info_description {
+    text-align: left;
+}
+
+.bold_option_product_info_image img {
+    max-height: 150px;
+}
+
+.bold_option_set {
+    }
+
+.bold_option:not(:empty) {
+            padding-bottom: 5px;
+        margin-bottom: 5px;
+        }
+
+.bold_option_product_title {
+            font-size: 16px;
+                            margin-bottom: 20px;
+}
+
+.bold_option_title,
+.bold_option_value_price {
+                font-weight: normal;
+                width: 15px;
+    }
+
+    .bold_option_value {
+        display: block;
+        margin-right: 15px;
+    }
+
+.bold_option_value_price,
+.bold_out_of_stock_message {
+    display: inline;
+    font-size: 80%;
+}
+
+.bold_option_out_of_stock .bold_option_title,
+.bold_option_out_of_stock .bold_option_value_title,
+.bold_option_out_of_stock .bold_option_value_price,
+.bold_option_dropdown_out_of_stock,
+.bold_option_out_of_stock .bold_option_value_element {
+    opacity: .5;
+}
+
+.bold_option_swatch .bold_option_element,
+.bold_option_radio .bold_option_element,
+.bold_option_checkboxmulti .bold_option_element,
+.bold_option_dropdownmulti .bold_option_element,
+.bold_option_textarea .bold_option_element {
+    display: block;
+}
+
+.bold_option_textboxmulti .bold_option_value {
+    display: block;
+    margin-left: 0;
+}
+
+.bold_option_displaytext p:last-child {
+    margin-bottom: 0;
+}
+
+.bold_option_displaytext p {
+    white-space:pre-wrap;
+}
+
+.bold_option_element,
+.bold_option_element input,
+.bold_option_element select,
+.bold_option_element textarea {
+                margin-left: 20px;
+        height: auto;
+}
+
+.bold_option_element input[type=radio] {
+    -webkit-appearance: radio;
+    width: auto;
+}
+
+.bold_help_text {
+    font-style: italic;
+    color: #848484;
+    display: block;
+}
+
+/* Bold Tooltips */
+.bold_tooltip {
+    position: relative;
+    display: inline-block;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAACR0lEQVR4Ae2Vz0obURTGf4mTiLEbSZhQW/sGRREi8UGEZtGNJOQFWhLzANq6tUjAdqvYQDZF6FsUg6uqLYrdqGmhSvNnM90cDsjMZWbu0ILg7y7Pd893c+79MjxwL0izTIsuR/QZM6bPEV3WKJMmMc/Y5AeeYV3whjmscdlhjBeyRrQpYMFLfuJFXH0qxCLDhzsNfrNLlRJ5smQpUKLGHjd3NG0cIpLjM56ur6wyZdBVOUaVHJCLdnptzx9e4YSoGwxQCxxCea/yY54ThXlO0UGFXq1Kv+ASlSKHuu8FmHH5pad3iUNRf8U1eYzs6OwDh6OnDGKBoVS3janVWL2G2AbQ1Og9IZBNfZiOlUGGE6lvEEBa/3NWwcoAalI/J4WPZU3tFLZMcytdlvDRktIuSdiXLk18dKVUJQl16dLBx5GUSiShLF16+OhLKQ/WlwyuKK7wIRkgm8hgUrPw3w10RIV/NSK9ZFuDkEvWZ1qzNgh5pmtS2ktk8FEUDfOPuyFnbfCIW/Og01xoli0NdEBnpAjgrX7NMlYGWb5JfZ1A5jQLDSuDllSHzGKgLZIB87ENFvWTuYWRgsbtlCJxeMx32XnJDGao6CkPKcZo39N9K4TQVukpC0RhUU/v8Y5QHA5UPqBJBjOQpcVQ9Z+YIAI51AKPE2pMG2JVl4cp7ZkiIo4OStLNPnXKuEwyiUuZOh1JrQ6HCWJR4Rov4rpkBQvybDMKbT5kixmsecoG58bmZ6wzS2LSLNGkQ48rRoy4okeHBiVS3AMe+Asl4wJqmp6/FwAAAABJRU5ErkJggg==);
+    background-repeat:no-repeat;
+    width:16px; height:16px;
+    background-size:16px 16px;
+    top:3px;
+}
+
+.bold_option_swatch_title,.bold_tooltip > :first-child {
+    position: absolute;
+    width: 140px;
+    color: #fff;
+    background: #000;
+    height: 1px;
+    line-height: 1px;
+    padding: 0;
+    text-align: center;
+    opacity: 0;
+    border-radius: 4px;
+    transition: all 0.4s;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    bottom: 30px;
+    margin-bottom:-.5em;
+    margin-top:0;
+}
+
+.bold_option_swatch_title span {
+    height: 1px;
+    line-height: 1px;
+}
+.bold_option_swatch_title:after,.bold_tooltip > :first-child:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    margin-left: -4px;
+    width: 0; height: 0;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    border-top: 4px solid #000;
+    top: 100%;
+}
+
+.bold_option_value:hover .bold_option_swatch_title,.bold_tooltip:hover > :first-child {
+    opacity: 0.8;
+    margin-bottom:0;
+    height: auto;
+    line-height: 1em;
+    padding: 1em
+}
+
+.bold_option_value:hover .bold_option_swatch_title span {
+    height: 1em;
+    line-height: 1em;
+}
+.bold_tooltip > *:not(a), .bold_option_swatch .bold_option_value .bold_option_swatch_title .bold_option_value_title {
+    pointer-events: none;
+}
+
+.bold_option_title .bold_tooltip img {
+    height: inherit;
+}
+
+.bold_option_swatch .bold_option_value:hover .bold_option_swatch_title .bold_option_value_title,
+.bold_option_swatch .bold_option_value:hover .bold_option_swatch_title .bold_option_value_title img{
+    height: initial;
+}
+
+.bold_option_swatch .bold_option_value .bold_option_swatch_title .bold_option_value_title img {
+    height: 1px;
+}
+
+.bold_option label {
+    display: inline;
+}
+
+.bold_option input[name="qty[]"] {
+    width: 50px;
+    padding: 5px;
+    height: auto;
+}
+
+.bold_option input[type="color"] {
+    box-sizing:initial;
+    width:50px;
+    padding: 5px;
+    height: 25px;
+}
+
+/* default styles for the priced options total */
+.bold_option_total > div {
+    padding: 5px 12px;
+    background: #fff;
+    text-align: center;
+}
+
+.bold_option_total span {
+    color: #AD0000;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/* custom styles for the priced options total */
+.bold_option_total > div {
+            }
+
+.bold_option_total span {
+    }
+
+/* Swatches styles */
+
+.bold_option_swatch .bold_option_value {
+    margin-bottom:5px;
+}
+
+.bold_option_swatch .bold_option_value_element {
+    box-sizing:border-box;
+    box-shadow:0 0 2px 1px rgba(0,0,0,.2);
+    border:3px solid #fff;
+}
+
+.bold_swatch_selected.bold_option_value_element {
+    box-shadow:0 0 0 1px #B3B3B3;
+    border:3px solid #B3B3B3;
+}
+
+.bold_option_swatch .bold_option_value {
+    vertical-align: top;
+}
+
+
+.bold_option_value_swatch {
+    box-sizing:border-box;
+    position:relative;
+    border:1px solid #fff;
+}
+
+    .bold_option_swatch .bold_option_value {
+        position:relative;
+        display:inline-block;
+        margin-right:5px;
+    }
+    .bold_option_swatch .bold_option_value_element {
+        display:inline-block;
+    }
+    .bold_option_swatch_title {
+        top:auto;
+        bottom:100%;
+        font-size:80%;
+        line-height:1.5;
+    }
+    .bold_option_swatch_title:after {
+        top:100%;
+        bottom:auto;
+        border-top: 4px solid #000;
+        border-bottom: 4px solid transparent;
+    }
+    .bold_option_value:hover .bold_option_swatch_title {
+        margin-bottom:.5em;
+    }
+    .bold_option_swatch_title > * {
+        display:block;
+    }
+    .bold_option_swatch .bold_option_value_quantity {
+        display: block;
+        width: 38px;
+        height: 0px;
+        transition: all 0.32s;
+    }
+
+    .bold_option_swatch span.bold_option_value_quantity {
+        height: inherit;
+        margin-bottom: 3px;
+        transition: all 0.3s;
+    }
+
+.bold_option_swatch input[type='checkbox'] {
+    display: none;
+}
+
+.bold_option_value_swatch > span {
+    display:block;
+    width:100%; height:100%;
+    left:0; top:0;
+    position:absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.bold_option_value_swatch > span:nth-child(2) { width:50%; left:50%; }
+.bold_option_value_swatch > span:nth-child(3) { top:50%; height:50%; }
+.bold_option_value_swatch > span:nth-child(4) { left:50%; top:50%; width:50%; height:50%; }
+
+.bold_option_value_swatch {
+    display:block;
+}
+
+    .bold_option_value_swatch { width:32px; height:32px; }
+
+    .bold_option_value_element, .bold_option_value_swatch { border-radius:50%; overflow:hidden; }
+
+
+/* errors */
+.bold_option_error,
+.bold_option_error .bold_option_title,
+.bold_error_message {
+    color: red;
+}
+
+.bold_option_error .bold_option_value_title.bold_option_not_error {
+    color: initial;
+}
+
+.bold_error_message {
+    display: block;
+}
+
+/* utility classes */
+.bold_hidden {
+    display:none !important;
+}
+
+/* ajax loading animation */
+.bold_spinner {
+    margin: 0 auto;
+    width: 90px;
+    text-align: center;
+}
+.bold_spinner > div {
+    width: 15px;
+    height: 15px;
+    margin:0 5px;
+    background-color: rgba(0,0,0,.25);
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.bold_spinner :nth-child(1) {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+.bold_spinner :nth-child(2) {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+@-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 40% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+      }
+}
+
+/* custom css */
+

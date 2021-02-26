@@ -1,0 +1,43 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+
+        jQuery(function() {
+            var $module = jQuery('#m-1516310880327');
+
+            if($module.children('.module').attr('data-fullheight') == '1' ){
+                var wHeight = jQuery(window).height();
+                $module.css({
+                    'height': wHeight
+                });
+                jQuery(window).resize(function(){
+                    $module.css('height', jQuery(window).height());
+                });
+
+                $module.children('.module').addClass('full-height');
+            } else {
+                $module.css({
+                    'height': 'auto'
+                });
+                jQuery(window).resize(function(){
+                    $module.css('height', 'auto');
+                });
+
+                $module.children('.module').removeClass('full-height');
+            }
+
+            var image = $module.children('.module').data('image') || '';
+            var speed = parseFloat($module.children('.module').data('speed')) || 0.2;
+            if($module.data('gfparallax') != undefined) {
+                $module.removeData('gfparallax');
+            }
+            $module.gfParallax({
+                'image': image,
+                'speed': speed
+            });
+        }); 
+    

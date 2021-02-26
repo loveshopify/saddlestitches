@@ -1,0 +1,120 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+
+        jQuery(function() {
+            var $module = jQuery('#m-1516214223662').children('.module');   
+            var columns = $module.data('columns'),
+                nav = $module.data('nav'), 
+                navspeed = $module.data('navspeed'), 
+                dots = $module.data('dots'),
+                center = $module.data('center'),
+                autoplaytimeout = $module.data('autoplaytimeout'),
+                autoplayhoverpause = $module.data('autoplayhoverpause');
+
+            var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+            if(mode == 'production') {
+                var autoplay = $module.data('autoplay'), 
+                    loop = $module.data('loop');
+            } else {
+                var autoplay = 0, 
+                    loop = 0;
+            }
+        
+            $module.owlCarousel({
+                mouseDrag: false,
+                nav: nav,
+                dots: dots,
+                autoplayHoverPause: autoplayhoverpause,
+                autoplay: autoplay,
+                autoplayTimeout: autoplaytimeout,
+                center: center,
+                loop: loop,
+                navSpeed: navspeed,
+                autoWidth: !1,
+                items: columns,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: nav, 
+                        dots: false 
+                    },
+                    700: {
+                        items: columns,
+                        nav: nav, 
+                        dots: dots 
+                    },
+                    1000: {      
+                        items: columns,
+                        nav: nav, 
+                        dots: dots,
+                    },
+                    1200: {      
+                        items: columns,
+                        nav: nav, 
+                        dots: dots 
+                    }
+                }
+            }); 
+        }); 
+    
+        jQuery(function() {
+            var $module = jQuery('#m-1516214256604').children('.module');   
+            var columns = $module.data('columns'),
+                nav = $module.data('nav'), 
+                navspeed = $module.data('navspeed'), 
+                dots = $module.data('dots'),
+                center = $module.data('center'),
+                autoplaytimeout = $module.data('autoplaytimeout'),
+                autoplayhoverpause = $module.data('autoplayhoverpause');
+
+            var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+            if(mode == 'production') {
+                var autoplay = $module.data('autoplay'), 
+                    loop = $module.data('loop');
+            } else {
+                var autoplay = 0, 
+                    loop = 0;
+            }
+        
+            $module.owlCarousel({
+                mouseDrag: false,
+                nav: nav,
+                dots: dots,
+                autoplayHoverPause: autoplayhoverpause,
+                autoplay: autoplay,
+                autoplayTimeout: autoplaytimeout,
+                center: center,
+                loop: loop,
+                navSpeed: navspeed,
+                autoWidth: !1,
+                items: columns,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: nav, 
+                        dots: false 
+                    },
+                    700: {
+                        items: columns,
+                        nav: nav, 
+                        dots: dots 
+                    },
+                    1000: {      
+                        items: columns,
+                        nav: nav, 
+                        dots: dots,
+                    },
+                    1200: {      
+                        items: columns,
+                        nav: nav, 
+                        dots: dots 
+                    }
+                }
+            }); 
+        }); 
+    

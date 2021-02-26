@@ -1,0 +1,115 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+
+        jQuery(function() {
+            var $module = jQuery('#m-1516145160460');
+
+            if($module.children('.module').attr('data-fullheight') == '1' ){
+                var wHeight = jQuery(window).height();
+                $module.css({
+                    'height': wHeight
+                });
+                jQuery(window).resize(function(){
+                    $module.css('height', jQuery(window).height());
+                });
+
+                $module.children('.module').addClass('full-height');
+            } else {
+                $module.css({
+                    'height': 'auto'
+                });
+                jQuery(window).resize(function(){
+                    $module.css('height', 'auto');
+                });
+
+                $module.children('.module').removeClass('full-height');
+            }
+
+            var image = $module.children('.module').data('image') || '';
+            var speed = parseFloat($module.children('.module').data('speed')) || 0.2;
+            if($module.data('gfparallax') != undefined) {
+                $module.removeData('gfparallax');
+            }
+            $module.gfParallax({
+                'image': image,
+                'speed': speed
+            });
+        }); 
+    
+        jQuery(function() {
+            var $module = jQuery('#m-1516145120641').children('.module');
+            var activeTab = parseInt($module.attr('data-activeTab')) - 1;
+            var mode = jQuery('.gryffeditor').hasClass('editing') ? 'dev' : 'production';
+
+            $module.gfV3ResTabs({
+                'activeTab': activeTab,
+                'mode': mode,
+                tabSelected: function(index) {
+                    var tabInactiveBgColor = $module.attr('data-inactiveTabBgColor');
+                    var tabInactiveColor = $module.attr('data-inactiveTabColor');
+                    var tabBgColor = $module.attr('data-tabBgColor');
+                    var tabColor = $module.attr('data-tabColor');
+                    var borderColor = $module.attr('data-borderColor');
+                    var borderSize = $module.attr('data-borderSize');
+
+                    var $gfTabs = $module.find('>ul>li.gf_tab');
+                    var $gfTabActive = $module.find('>ul>li.gf_tab-active');
+                    var $gfTabPanels = $module.find('>.gf_tab-panel');
+
+                    if(!$module.hasClass('style3')) {
+                        $gfTabs
+                        .css('background-color', tabInactiveBgColor)
+                        .css('color', tabInactiveColor);
+                    }
+                    if($module.hasClass('style1')) {
+                        $gfTabs
+                        .css('margin-left', '-' + borderSize)
+                        .css('border', borderSize + ' solid ' + borderColor)
+                        .css('border-bottom', borderSize + ' solid ' + borderColor);
+
+                        $module.find('>ul>li.gf_tab:first').css('margin-left', '0px');
+
+                    } else if($module.hasClass('style3')) {
+                        $gfTabs.css('border-bottom', borderSize + ' solid ' + tabBgColor);
+                    }
+
+                    if(!$module.hasClass('style3')) {
+                        $gfTabActive
+                        .css('background-color', tabBgColor)
+                        .css('color', tabColor);
+                    } 
+                    if($module.hasClass('style1')) {
+                        $gfTabActive.children('.gf_tab-bottom')
+                        .css('backgroundColor', tabBgColor)
+                        .css('height', borderSize)
+                        .css('bottom', '-' + borderSize);
+                    } else if($module.hasClass('style3')) {
+                        $gfTabActive.children('.gf_tab-bottom')
+                        .css('backgroundColor', borderColor)
+                        .css('height', borderSize)
+                        .css('bottom', '-' + borderSize);
+                    }
+                    $gfTabPanels
+                    .css('top', '-' + borderSize)
+                    .css('background-color', tabBgColor)
+                    .css('border', '1px solid ' + borderColor);
+
+                    if($module.hasClass('style1')) {
+                        $gfTabPanels.css('border', borderSize + ' solid ' + borderColor);
+                    } else {
+                        $gfTabPanels.css('border', 'none');
+                    }
+                }
+            });
+            if(mode == 'dev') {
+                window.getTab1516145120641 = function() {
+                    return $module.data('gfv3restabs');
+                }
+            }
+        });
+    

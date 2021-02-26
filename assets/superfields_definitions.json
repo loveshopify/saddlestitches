@@ -1,0 +1,118 @@
+[
+  {
+    "resource_type": "products",
+    "groups": [
+      {
+        "description": "Add up to two unique product tabs, that are unique to a given product. Make sure to include both the title and the content for each tab.",
+        "name": "Custom product tabs",
+        "namespace": "sf_product_tabs",
+        "sub_groups": [
+          {
+            "name": "Tab 1",
+            "fields": [
+              {
+                "type": "text",
+                "key": "tab_1_title",
+                "name": "Title",
+                "hint": "Keep the title short"
+              },
+              {
+                "type": "rte",
+                "key": "tab_1_content",
+                "name": "Content"
+              }
+            ]
+          },
+          {
+            "name": "Tab 2",
+            "fields": [
+              {
+                "type": "text",
+                "key": "tab_2_title",
+                "name": "Title",
+                "hint": "Keep the title short"
+              },
+              {
+                "type": "rte",
+                "key": "tab_2_content",
+                "name": "Content"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Choose up to 4 hand-picked related products.",
+        "name": "Hand-picked related products",
+        "namespace": "sf_related_products",
+        "fields": [
+          {
+            "type": "switch",
+            "key": "enabled",
+            "name": "Enable",
+            "hint": "If unchecked, the theme will use the default theme behavior (picking random products)"
+          },
+          {
+            "type": "product",
+            "key": "product_1",
+            "name": "Product 1"
+          },
+          {
+            "type": "product",
+            "key": "product_2",
+            "name": "Product 2"
+          },
+          {
+            "type": "product",
+            "key": "product_3",
+            "name": "Product 3"
+          },
+          {
+            "type": "product",
+            "key": "product_4",
+            "name": "Product 4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "resource_type": "collections",
+    "groups": [
+      {
+        "description": "Specify per-collection footer information",
+        "name": "Collection footer",
+        "namespace": "sf_collection_footer",
+        "fields": [
+          {
+            "type": "switch",
+            "key": "enabled",
+            "name": "Enable",
+            "hint": "If checked, this will replace the general info."
+          },
+          {
+            "type": "image",
+            "key": "image",
+            "name": "Image",
+            "hint": "1500 x 500px jpg recommended"
+          },
+          {
+            "type": "color",
+            "key": "text_color",
+            "name": "Text"
+          },
+          {
+            "type": "text",
+            "key": "title",
+            "name": "Title"
+          },
+          {
+            "type": "rte",
+            "key": "content",
+            "name": "Content"
+          }
+        ]
+      }
+    ]
+  }
+]

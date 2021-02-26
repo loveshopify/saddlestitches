@@ -1,0 +1,158 @@
+<div id="section-{{ section.id }}" class="Section" data-section-id="{{ section.id }}" data-section-type="article-list">
+  {%- if blog.articles_count == 0 -%}
+    <div class="EmptyState">
+      <div class="Container">
+        <h1 class="EmptyState__Title Heading u-h5">{{ 'blog.general.no_articles' | t: blog_title: blog.title }}</h1>
+        <a href="/" class="EmptyState__Action Button Button--primary">{{ 'blog.general.empty_button' | t }}</a>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="Blog">
+      <div class="Container">
+        <header class="PageHeader">
+          <div class="SectionHeader SectionHeader--center">
+            <h1 class="SectionHeader__Heading Heading u-h1">
+              {{- blog.title -}}
+
+              {%- if section.settings.show_rss -%}
+                <a href="{{ blog.url }}.atom" target="_blank" class="Blog__RssLink Link Link--secondary">{% include 'icon' with 'rss' %}</a>
+              {%- endif -%}
+            </h1>
+
+            {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
+              <ul class="Blog__TagList HorizontalList HorizontalList--spacingExtraLoose">
+                <li class="HorizontalList__Item">
+                  <a href="/blogs/{{ blog.handle }}" class="Heading Link Link--primary Text--subdued u-h8 {% if current_tags == blank %}is-active{% endif %}">{{ 'blog.general.all_tag' | t }}</a>
+                </li>
+
+                {%- for tag in blog.all_tags -%}
+                  <li class="HorizontalList__Item">
+                    <a href="/blogs/{{ blog.handle }}/tagged/{{ tag | handle }}" class="Heading Link Link--primary Text--subdued u-h8 {% if current_tags contains tag %}is-active{% endif %}">{{ tag }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        </header>
+
+        {%- if section.settings.show_featured_article and current_tags == blank -%}
+          {%- assign articles_per_page = 13 -%}
+        {%- else -%}
+          {%- assign articles_per_page = 12 -%}
+        {%- endif -%}
+
+        {%- paginate blog.articles by articles_per_page -%}
+          {% assign is_first_article_featured = false %}
+
+          {%- if section.settings.show_featured_article and current_tags == blank and blog.articles.first.image -%}
+            {%- assign is_first_article_featured = true -%}
+          {%- endif -%}
+
+          <div class="ArticleListWrapper">
+            <div class="ArticleList {% if is_first_article_featured %}ArticleList--withFeatured{% endif %} Grid Grid--m">
+              {%- for article in blog.articles -%}
+                {%- if is_first_article_featured and forloop.first -%}
+                  <div class="Grid__Cell hidden-phone">
+                    <div class="FlexboxIeFix">
+                      <div class="ImageHero ImageHero--small" style="background: url({{ article.image | img_url: '1x1', format: 'jpg' }})">
+                        <div class="ImageHero__ImageWrapper">
+                          <div class="ImageHero__Image Image--lazyLoad Image--zoomOut"
+                               data-optimumx="1.4"
+                               data-bgset="{{ article.image | img_url: mobile_size, crop: 'center' }} 750w, {{ article.image | img_url: '1000x' }} 1000w, {{ article.image | img_url: '1500x' }} 1500w">
+                          </div>
+
+                          <noscript>
+                            <div class="ImageHero__Image" style="background-image: url({{ article.image | img_url: '1000x' }})"></div>
+                          </noscript>
+                        </div>
+
+                        <div class="ImageHero__TextContent">
+                          <header class="SectionHeader">
+                            {%- if section.settings.show_category and article.tags != empty -%}
+                              <span class="SectionHeader__SubHeading Heading u-h6">{{ article.tags.first }}</span>
+                            {%- endif -%}
+
+                            <h2 class="SectionHeader__Heading Heading u-h1">
+                              <a href="{{ article.url }}">{{ article.title }}</a>
+                            </h2>
+
+                            <div class="SectionHeader__ButtonWrapper">
+                              <a href="{{ article.url }}" class="Button Button--primary">{{ 'blog.article.read_more' | t }}</a>
+                            </div>
+                          </header>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
+
+                <div class="Grid__Cell {% if is_first_article_featured and forloop.first %}hidden-tablet-and-up{% else %}1/2--tablet 1/3--lap-and-up{% endif %}">
+                  {%- include 'article-item', article: article -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+
+          {%- include 'pagination' -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+  #section-{{ section.id }} .ImageHero,
+  #section-{{ section.id }} .ImageHero .Heading {
+    color: #ffffff;
+  }
+
+  #section-{{ section.id }} .ImageHero .Button {
+    color: #1c1c1c;
+    border-color: #ffffff;
+  }
+
+  #section-{{ section.id }} .ImageHero .Button::before {
+    background-color: #ffffff;
+  }
+
+  {%- if settings.show_button_transition -%}
+    @media (-moz-touch-enabled: 0), (hover: hover) {
+      #section-{{ section.id }} .ImageHero .Button:hover {
+        color: #ffffff;
+      }
+    }
+  {%- endif -%}
+</style>
+
+{% schema %}
+{
+  "name": "Blog page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_rss",
+      "label": "Show RSS",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show filters",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_article",
+      "label": "Show featured article",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show article category",
+      "info": "The first article's tag is used as the main category.",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
